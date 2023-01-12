@@ -26,34 +26,13 @@ public class EjemploServidor {
             // Se inicia el servidor en el equipo local en el puerto indicado
             ServerSocket socketServidor = new ServerSocket(PUERTO);
             // Espera la conexión con un cliente. accept es un método bloqueante
-            Socket socketCliente = socketServidor.accept();
+            
+            while(true){
+                Socket socketCliente = socketServidor.accept();
+                
+                new Thread(new Cliente(socketCliente)).start();
 
-            // Establece los flujos de salida y entrada (desde y hacia el cliente, respectivamente)
-            PrintWriter salida = new PrintWriter(socketCliente.getOutputStream(),true);
-            BufferedReader entrada = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
-
-            // Envía algunos ç
-            salida.println("Hola " + socketCliente.getInetAddress().getHostAddress());
-            salida.println("Dame dos numeros y te devuelvo la suma :)");
-            /*
-             * Esta sucesión de instrucciones siempre ocurrirá en este
-             * orden.
-             */
-            int n1 = Integer.parseInt(entrada.readLine());
-            System.out.println("El primer operando es:  " + n1);
-            
-            int n2 = Integer.parseInt(entrada.readLine());
-            System.out.println("El segundo operando es:  " + n2);
-     
-           
-            salida.println("Te paso la suma:" + (n1 + n2) );
-            
-            
-            salida.println("Hasta otra, amigo del alma . . .");
-            // Cierra la conexión con el cliente
-            socketCliente.close();
-            // Paramos el servidor, a partir de ahora no aceptamos conexiones
-            socketServidor.close();
+            }
                    
     } catch (IOException ioe) {
             ioe.printStackTrace();
