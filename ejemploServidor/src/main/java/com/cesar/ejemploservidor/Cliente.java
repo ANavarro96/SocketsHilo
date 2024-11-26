@@ -19,15 +19,15 @@ import java.util.logging.Logger;
 public class Cliente implements Runnable {
     
     private Socket socket;
-    PrintWriter salida;
-    BufferedReader entrada;
+    PrintWriter entradaSocketCliente;
+    BufferedReader salidaSocketCliente;
 
     public Cliente(Socket socket) {
         try {
             this.socket = socket;
             // Establece los flujos de salida y entrada (desde y hacia el cliente, respectivamente)
-            salida = new PrintWriter(socket.getOutputStream(),true);
-            entrada = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            entradaSocketCliente = new PrintWriter(socket.getOutputStream(),true);
+            salidaSocketCliente = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -38,23 +38,23 @@ public class Cliente implements Runnable {
     public void run() {
         try {
             // Envía algunos ç
-            salida.println("Hola " + socket.getInetAddress().getHostAddress());
-            salida.println("Dame dos numeros y te devuelvo la suma :)");
+            entradaSocketCliente.println("Hola " + socket.getInetAddress().getHostAddress());
+            entradaSocketCliente.println("Dame dos numeros y te devuelvo la suma :)");
             /*
             * Esta sucesión de instrucciones siempre ocurrirá en este
             * orden.
             */
-            int n1 = Integer.parseInt(entrada.readLine());
+            int n1 = Integer.parseInt(salidaSocketCliente.readLine());
             System.out.println("El primer operando es:  " + n1);
             
-            int n2 = Integer.parseInt(entrada.readLine());
+            int n2 = Integer.parseInt(salidaSocketCliente.readLine());
             System.out.println("El segundo operando es:  " + n2);
             
             
-            salida.println("Te paso la suma:" + (n1 + n2) );
+            entradaSocketCliente.println("Te paso la suma:" + (n1 + n2) );
             
             
-            salida.println("Hasta otra, amigo del alma . . .");
+            entradaSocketCliente.println("Hasta otra, amigo del alma . . .");
             // Cierra la conexión con el cliente
             socket.close();
         } catch (IOException ex) {
