@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <exec.mainClass>com.cesar.ejemplocliente.EjemploCliente</exec.mainClass>
+        <exec.mainClass>com.cesar.ejemplocliente.Cliente</exec.mainClass>
     </properties>
      <build>
         <plugins>
@@ -21,7 +21,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.cesar.ejemplocliente.EjemploCliente</mainClass>
+                            <mainClass>com.cesar.ejemplocliente.Cliente</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

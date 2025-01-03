@@ -4,11 +4,7 @@
 
 package com.cesar.ejemploservidor;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -16,7 +12,7 @@ import java.net.Socket;
  *
  * @author 2 DAM CIFP Cesar Manrique
  */
-public class EjemploServidor {
+public class Servidor {
 
    // Se establece el puerto en el que abrimos el canal de comunicación
    static final int PUERTO = 69;
@@ -30,7 +26,7 @@ public class EjemploServidor {
             while(true){
                 Socket socketCliente = socketServidor.accept();
                 
-                new Thread(new Cliente(socketCliente)).start();
+                new Thread(new ClienteConectado(socketCliente)).start();
 
             }
                    

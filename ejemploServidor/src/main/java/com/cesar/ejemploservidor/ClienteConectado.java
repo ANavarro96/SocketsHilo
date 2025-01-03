@@ -16,20 +16,20 @@ import java.util.logging.Logger;
  *
  * @author aleja
  */
-public class Cliente implements Runnable {
+public class ClienteConectado implements Runnable {
     
     private Socket socket;
     PrintWriter entradaSocketCliente;
     BufferedReader salidaSocketCliente;
 
-    public Cliente(Socket socket) {
+    public ClienteConectado(Socket socket) {
         try {
             this.socket = socket;
             // Establece los flujos de salida y entrada (desde y hacia el cliente, respectivamente)
             entradaSocketCliente = new PrintWriter(socket.getOutputStream(),true);
             salidaSocketCliente = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteConectado.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -58,7 +58,7 @@ public class Cliente implements Runnable {
             // Cierra la conexión con el cliente
             socket.close();
         } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteConectado.class.getName()).log(Level.SEVERE, null, ex);
         }
 
                    

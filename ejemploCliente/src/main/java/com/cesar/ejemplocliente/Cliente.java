@@ -5,7 +5,6 @@
 package com.cesar.ejemplocliente;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -17,7 +16,7 @@ import java.util.Scanner;
  *
  * @author aleja
  */
-public class EjemploCliente {
+public class Cliente {
 
     private static final String HOST = "localhost";
     private static final int PUERTO = 69;
